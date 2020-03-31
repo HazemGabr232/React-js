@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import Menu from "./components/MenuComponent";
+import "./App.css";
+import { DISHES } from "./shared/dishes";
+import Header from "./components/HeaderComponent";
+import Footer from "./components/FooterComponent";
+import Home from "./components/HomeComponent";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dishes: DISHES
+    };
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Header />
+          <Switch>
+            <Route
+              path="/menu"
+              component={() => <Menu dishes={this.state.dishes} />}
+            />
+
+            <Route path="/home" component={() => <Home />} />
+            <Redirect to="/home" />
+          </Switch>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
