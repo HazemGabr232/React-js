@@ -6,6 +6,7 @@ import { DISHES } from "./shared/dishes";
 import Header from "./components/HeaderComponent";
 import Footer from "./components/FooterComponent";
 import Home from "./components/HomeComponent";
+import Contact from "./components/ContactComponent";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 class App extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends Component {
             />
 
             <Route path="/home" component={() => <Home />} />
+            <Route path="/contactus" component={() => <Contact />} />
             <Redirect to="/home" />
           </Switch>
           <Footer />
